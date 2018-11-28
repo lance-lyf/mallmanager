@@ -17,8 +17,6 @@
     data() {
       return {
         formData: {
-          username: '',
-          password: ''
         }
       }
     },
