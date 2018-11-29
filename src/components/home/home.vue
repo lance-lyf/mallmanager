@@ -14,7 +14,7 @@
         </el-col>
         <el-col :span="2">
           <div class="grid-content bg-purple">
-            <a href="#" class="checkout">退出</a>
+            <a href="#" class="checkout" @click.prevent="checkoutEvent()">退出</a>
           </div>
         </el-col>
       </el-row>
@@ -55,11 +55,11 @@
               <i class="el-icon-menu"></i>
               <span>商品列表</span>
             </el-menu-item>
-             <el-menu-item index="3-2">
+            <el-menu-item index="3-2">
               <i class="el-icon-menu"></i>
               <span>分类参数</span>
             </el-menu-item>
-             <el-menu-item index="3-3">
+            <el-menu-item index="3-3">
               <i class="el-icon-menu"></i>
               <span>商品分类</span>
             </el-menu-item>
@@ -92,7 +92,21 @@
   </el-container>
 </template>
 <script>
-export default {}
+export default {
+  beforeCreate() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.$router.push({ name: 'login' })
+    }
+  },
+  methods: {
+    checkoutEvent() {
+      this.$message.success('退出成功');
+      localStorage.removeItem('token');
+      this.$router.push({ name: 'login' });
+    }
+  }
+}
 
 </script>
 <style>
