@@ -23,7 +23,6 @@
     methods: {
       async checkLogin() {
         const res = await this.$http.post('login', this.formData);
-        console.log(res);
         const { data, meta: { msg, status } } = res.data;
         if (status === 200) {
           localStorage.setItem('token', data.token);
